@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "org.flywaydb.flyway" version "7.14.1"
+    id 'java'
+}
+
+group = 'com.snowwarrior'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'mysql:mysql-connector-java:8.0.25'
+//    implementation 'com.alibaba:druid-spring-boot-starter:1.2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+}
+
+flyway{
+    url = 'jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8'
+    user = 'root'
+    password = 'x208820'
+    baselineOnMigrate = true
+}
+
+test {
+    useJUnitPlatform()
+}
