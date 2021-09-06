@@ -26,6 +26,8 @@ flyway{
     user = 'root'
     password = 'x208820'
     baselineOnMigrate = true
+    outOfOrder = false
+    validateOnMigrate = true
 }
 
 test {
