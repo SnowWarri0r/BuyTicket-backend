@@ -15,7 +15,20 @@ repositories {
 
 dependencies {
     implementation 'mysql:mysql-connector-java:8.0.25'
-//    implementation 'com.alibaba:druid-spring-boot-starter:1.2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.4'
+    //jjwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    //base64 converter
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    //blank and null process
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    //exception process
+    implementation 'org.zalando:problem:0.26.0'
+    implementation 'org.zalando:jackson-datatype-problem:0.26.0'
+    implementation 'org.zalando:problem-gson:0.26.0'
+    implementation 'org.zalando:problem-spring-web:0.26.2'
+
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'

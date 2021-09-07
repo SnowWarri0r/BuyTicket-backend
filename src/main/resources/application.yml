@@ -1,6 +1,8 @@
 server:
   port: 8080
 
+jwt.secret: wozaijiayuan
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 

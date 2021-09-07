@@ -1,5 +1,8 @@
 package com.snowwarrior.huikuan.model;
 
+import com.snowwarrior.huikuan.dto.UserRegisterDTO;
+import org.springframework.beans.BeanUtils;
+
 public class User {
     private Long id;
 
@@ -8,6 +11,8 @@ public class User {
     private String password;
 
     private Double balance;
+
+    private String role;
 
     public Long getId() {
         return id;
@@ -19,6 +24,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(Long id) {
@@ -39,5 +48,16 @@ public class User {
 
     public Double getBalance() {
         return balance;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public static User convertOfUserRegisterDTO(UserRegisterDTO dto) {
+        User user = new User();
+        BeanUtils.copyProperties(dto, user);
+
+        return user;
     }
 }
