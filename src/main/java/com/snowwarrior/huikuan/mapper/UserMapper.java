@@ -27,15 +27,16 @@ public interface UserMapper {
             "values(" +
             "#{username},#{password},#{balance},#{role}" +
             ")")
-    Optional<Long> addUser(User user);
+    Long addUser(User user);
 
     @Update("update user set username=#{username},password=#{password},balance=#{balance},role=#{role}" +
             "where id=#{id}")
-    Optional<Long> updateUserById(User user);
+    Long updateUserById(User user);
 
     @Delete("delete from user where id=#{id}")
-    Optional<Long> deleteUserById(Long id);
+    Long deleteUserById(Long id);
 
     @Select("select * from user where username=#{username}")
     Optional<User> getUserByUsername(String username);
+
 }

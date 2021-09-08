@@ -125,5 +125,23 @@ public class GlobalExceptionHandler implements ProblemHandling {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(responseBody);
     }
+
+    @ExceptionHandler(InvalidOperationException.class)
+    public ResponseEntity<Problem> handleInvalidOperationException(InvalidOperationException ex, NativeWebRequest request) {
+        Problem problem = Problem.builder()
+                .withStatus(Status.BAD_REQUEST)
+                .with("message", ex.getMessage())
+                .build();
+        return create(ex, problem, request);
+    }
+
+    @ExceptionHandler(UnaffordableException.class)
+    public ResponseEntity<Problem> handleInvalidOperationException(UnaffordableException ex, NativeWebRequest request) {
+        Problem problem = Problem.builder()
+                .withStatus(Status.BAD_REQUEST)
+                .with("message", ex.getMessage())
+                .build();
+        return create(ex, problem, request);
+    }
 }
 

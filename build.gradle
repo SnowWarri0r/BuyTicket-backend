@@ -24,6 +24,7 @@ dependencies {
     implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
     //blank and null process
     implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.hibernate:hibernate-validator:7.0.1.Final'
     //exception process
     implementation 'org.zalando:problem:0.26.0'
     implementation 'org.zalando:jackson-datatype-problem:0.26.0'
