@@ -1,11 +1,11 @@
 package com.snowwarrior.huikuan.util;
 
+import com.snowwarrior.huikuan.constant.SecurityConstants;
 import com.snowwarrior.huikuan.constant.UserRoleConstants;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,9 +20,7 @@ import java.util.Objects;
 public class JwtUtils implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-
-    @Value("${jwt.secret}")
-    private static String secret;
+    private static final String SECRET = SecurityConstants.secret;
 
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
@@ -31,10 +29,10 @@ public class JwtUtils implements Serializable {
     }
 
     public static String generateToken(String username, String role) {
-        byte[] jwtSecretKey = DatatypeConverter.parseBase64Binary(secret);
+        byte[] jwtSecretKey = DatatypeConverter.parseBase64Binary(SECRET);
         return Jwts.builder()
                 .setHeaderParam("type", "JWT")
-                .signWith(SignatureAlgorithm.HS256, Keys.hmacShaKeyFor(jwtSecretKey))
+                .signWith(Keys.hmacShaKeyFor(jwtSecretKey), SignatureAlgorithm.HS256)
                 .setSubject(username)
                 .claim("role", role)
                 .setIssuer("snowwarrior")
@@ -71,10 +69,10 @@ public class JwtUtils implements Serializable {
     }
 
     private static Claims getTokenBody(String token) {
-        byte[] jwtSecretKey = DatatypeConverter.parseBase64Binary(secret);
-        return Jwts.parser()
+        byte[] jwtSecretKey = DatatypeConverter.parseBase64Binary(SECRET);
+        return Jwts.parserBuilder()
                 .setSigningKey(jwtSecretKey)
-                .parseClaimsJws(token)
+                .build().parseClaimsJws(token)
                 .getBody();
     }
 }
