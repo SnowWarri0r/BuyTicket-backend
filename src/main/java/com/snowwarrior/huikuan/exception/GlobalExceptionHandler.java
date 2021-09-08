@@ -3,6 +3,7 @@ package com.snowwarrior.huikuan.exception;
 import com.snowwarrior.huikuan.constant.ErrorConstants;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindingResult;
@@ -100,6 +101,15 @@ public class GlobalExceptionHandler implements ProblemHandling {
 
     @ExceptionHandler(InsufficientAuthenticationException.class)
     public ResponseEntity<Problem> handleInsufficientAuthenticationException(InsufficientAuthenticationException ex, NativeWebRequest request) {
+        Problem problem = Problem.builder()
+                .withStatus(Status.UNAUTHORIZED)
+                .with("message", ex.getMessage())
+                .build();
+        return create(ex, problem, request);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Problem> handleBadCredentialsException(BadCredentialsException ex, NativeWebRequest request) {
         Problem problem = Problem.builder()
                 .withStatus(Status.UNAUTHORIZED)
                 .with("message", ex.getMessage())
