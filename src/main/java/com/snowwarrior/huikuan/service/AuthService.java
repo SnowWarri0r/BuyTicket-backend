@@ -42,8 +42,8 @@ public class AuthService {
             }
             String token = JwtUtils.generateToken(username, role);
 
-//            Authentication authentication = JwtUtils.getAuthentication(token);
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
+            Authentication authentication = JwtUtils.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(username);
