@@ -1,7 +1,6 @@
 package com.snowwarrior.huikuan.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class UserRegisterDTO {
 
@@ -13,8 +12,9 @@ public class UserRegisterDTO {
     @Size(min = 4, max = 30)
     private String password;
 
-    @NotBlank
-    @Size(max = 100)
+    @NotNull
+    @Min(value = 100)
+    @Max(value = 50000)
     private Double balance;
 
     public String getUsername() {

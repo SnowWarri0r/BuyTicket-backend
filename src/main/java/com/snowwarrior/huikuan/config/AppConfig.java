@@ -25,9 +25,9 @@ public class AppConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("*"));
-        config.setAllowedMethods(Collections.singletonList("*"));
-        config.setAllowedHeaders(Collections.singletonList("*"));
+        config.addAllowedOriginPattern("*");
+        config.addAllowedMethod(CorsConfiguration.ALL);
+        config.addAllowedHeader(CorsConfiguration.ALL);
         config.setExposedHeaders(Arrays.asList(
                 "Authorization", "X-Total-Count", "Link",
                 "Access-Control-Allow-Origin",

@@ -3,6 +3,10 @@ package com.snowwarrior.huikuan.model;
 import com.snowwarrior.huikuan.dto.UserRegisterDTO;
 import org.springframework.beans.BeanUtils;
 
+/**
+ * user模型
+ * @author SnowWarrior
+ */
 public class User {
     private Long id;
 

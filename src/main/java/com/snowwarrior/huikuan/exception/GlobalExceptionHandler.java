@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 异常处理类，全部转换成json格式返回
  * @author SnowWarrior
  */
 @ControllerAdvice

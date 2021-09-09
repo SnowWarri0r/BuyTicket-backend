@@ -27,9 +27,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
         String token = this.getTokenFromHttpRequest(request);
         if (StringUtils.hasText(token) && JwtUtils.validateToken(token)) {
+            //验证token有效，就把相应的凭证存入安全上下文以便于后续handler的访问处理
             Authentication authentication = JwtUtils.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+        //放行filter
         filterChain.doFilter(request, response);
     }
 
